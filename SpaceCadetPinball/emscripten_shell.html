@@ -42,9 +42,15 @@
         }
 
         body {
-            font-family: Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--Background);
-            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            background-color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         textarea.emscripten {
@@ -55,16 +61,13 @@
         canvas.emscripten {
             border: 0px none;
             background-color: black;
+            width: 100vw !important;
+            height: 100vh !important;
+            display: block !important;
         }
 
         .titlebar {
-            text-align: start;
-            margin: 0px;
-            padding: 1px;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            user-select: none;
+            display: none !important;
         }
 
         .titlebar .titlebar-icon {
@@ -224,9 +227,9 @@
             </div>
         </div>
 
-        <div class="emscripten" id="status">Downloading...</div>
-        <div class="emscripten">
-            <progress value="0" max="100" id="progress" hidden=1></progress>
+        <div class="emscripten" id="status" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 20px;">Downloading...</div>
+        <div class="emscripten" style="position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%); width: 50%;">
+            <progress value="0" max="100" id="progress" hidden=1 style="width: 100%;"></progress>
         </div>
         <canvas class="emscripten" id="canvas" style="display:none;" oncontextmenu="event.preventDefault()"
             tabindex="-1"></canvas>
@@ -292,7 +295,9 @@
                     progressElement.hidden = true;
 
                     var canvas = document.getElementById('canvas');
-                    canvas.style.display = "";
+                    canvas.style.display = "block";
+                    canvas.style.width = "100vw";
+                    canvas.style.height = "100vh";
                 }
                 statusElement.innerHTML = text;
 
